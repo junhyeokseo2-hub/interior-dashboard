@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>신동아 인테리어 — 22평 웜 베이지 미니멀</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F6F1EB; --bg-warm: #EFE8DE; --card: #FDFBF8; --cream: #F0E8DC;
+  --sand: #D6C8B4; --warm-beige: #C9B99A; --camel: #B5A282; --taupe: #9A8B76;
+  --wood: #8B7355; --wood-dark: #6B5840; --text: #3A3229; --text-mid: #6B5F52;
+  --text-light: #9A8E80; --accent: #BFA57A; --accent-warm: #C4A060;
+  --success: #7EA06B; --warning: #C9A04A; --danger: #B86E5E;
+  --shadow-sm: 0 1px 4px rgba(58,50,41,0.06); --shadow-md: 0 6px 20px rgba(58,50,41,0.08);
+  --shadow-lg: 0 12px 40px rgba(58,50,41,0.10);
+  --radius: 14px; --radius-sm: 8px; --radius-lg: 22px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; font-weight:400; -webkit-font-smoothing:antialiased; }
+
+.hero { background:linear-gradient(170deg,#E8DDCE 0%,#EFE8DE 40%,#DFD3C0 100%); padding:50px 40px 44px; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-40%; right:-15%; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle,rgba(191,165,122,0.10) 0%,transparent 65%); }
+.hero-tag { display:inline-block; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--taupe); border:1px solid var(--sand); padding:7px 20px; border-radius:30px; margin-bottom:18px; font-weight:500; }
+.hero h1 { font-family:'DM Serif Display',serif; font-size:clamp(28px,5vw,46px); font-weight:400; color:var(--text); margin-bottom:4px; }
+.hero h1 em { font-family:'Instrument Serif',serif; font-style:italic; color:var(--wood); }
+.hero-sub { font-size:13px; color:var(--text-mid); font-weight:300; margin-bottom:24px; }
+.hero-specs { display:flex; justify-content:center; gap:36px; flex-wrap:wrap; }
+.hero-spec { text-align:center; }
+.hero-spec .num { font-family:'DM Serif Display',serif; font-size:28px; color:var(--text); }
+.hero-spec .label { font-size:10px; color:var(--taupe); letter-spacing:2px; text-transform:uppercase; }
+
+.nav-bar { display:flex; justify-content:center; gap:2px; padding:12px 10px; background:var(--card); border-bottom:1px solid var(--cream); position:sticky; top:0; z-index:100; flex-wrap:wrap; }
+.nav-btn { padding:8px 16px; border:none; background:none; font-family:'Noto Sans KR',sans-serif; font-size:12px; font-weight:500; color:var(--text-light); cursor:pointer; border-radius:30px; transition:all 0.25s ease; white-space:nowrap; }
+.nav-btn:hover { color:var(--text); background:var(--cream); }
+.nav-btn.active { background:var(--text); color:var(--card); }
+
+.container { max-width:1100px; margin:0 auto; padding:0 24px; }
+.section { display:none; padding:36px 0 56px; animation:fadeUp 0.4s ease; }
+.section.active { display:block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+.section-header { margin-bottom:30px; }
+.section-header h2 { font-family:'DM Serif Display',serif; font-size:26px; font-weight:400; margin-bottom:4px; }
+.section-header p { font-size:13px; color:var(--text-light); font-weight:300; }
+
+/* Cards & Common */
+.card { background:var(--card); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-sm); margin-bottom:16px; }
+.card h3 { font-size:15px; font-weight:600; margin-bottom:10px; }
+.card h4 { font-size:14px; font-weight:600; color:var(--wood); margin-bottom:8px; }
+.card p, .card li { font-size:13px; color:var(--text-mid); line-height:1.7; }
+.card ul { padding-left:18px; }
+.card ul li { margin-bottom:4px; }
+
+.grid-2 { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; }
+.grid-3 { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:16px; }
+
+.tag { display:inline-block; font-size:11px; padding:3px 12px; border-radius:20px; background:var(--cream); color:var(--taupe); margin:2px 4px 2px 0; }
+.tag-accent { background:var(--accent); color:white; }
+.tag-success { background:#E8F5E9; color:var(--success); }
+.tag-warning { background:#FFF3E0; color:var(--warning); }
+.tag-danger { background:#FDECEA; color:var(--danger); }
+
+/* Moodboard */
+.mood-direction { background:var(--card); border-radius:var(--radius-lg); padding:26px 28px; box-shadow:var(--shadow-sm); margin-bottom:24px; border-left:4px solid var(--accent); }
+.mood-direction h3 { font-family:'Instrument Serif',serif; font-size:19px; font-style:italic; color:var(--wood); margin-bottom:6px; }
+.mood-direction p { font-size:13px; color:var(--text-mid); line-height:1.8; }
+.mood-palette { display:flex; gap:0; margin-bottom:28px; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); height:70px; }
+.palette-bar { flex:1; position:relative; display:flex; align-items:flex-end; justify-content:center; padding-bottom:8px; transition:flex 0.3s; cursor:default; min-width:0; }
+.palette-bar:hover { flex:1.5; }
+.palette-bar .plabel { font-size:8px; letter-spacing:1px; text-transform:uppercase; color:rgba(58,50,41,0.5); white-space:nowrap; font-weight:500; }
+.palette-bar:nth-child(n+5) .plabel { color:rgba(253,251,248,0.6); }
+.mood-card { background:var(--card); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); transition:all 0.3s; }
+.mood-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-3px); }
+.mood-img { width:100%; height:160px; display:flex; align-items:center; justify-content:center; font-size:40px; }
+.mood-card-body { padding:18px; }
+.mood-card-body h4 { font-size:14px; font-weight:600; margin-bottom:6px; }
+.mood-card-body p { font-size:12px; color:var(--text-mid); line-height:1.7; }
+.mood-keywords { display:flex; gap:5px; flex-wrap:wrap; margin-top:10px; }
+
+/* Timeline */
+.timeline-row { display:grid; grid-template-columns:80px 1fr; gap:12px; align-items:start; margin-bottom:6px; }
+.timeline-day { font-size:12px; font-weight:600; color:var(--wood); padding-top:10px; text-align:right; }
+.timeline-bar { border-radius:var(--radius-sm); padding:10px 16px; font-size:12px; color:white; font-weight:500; position:relative; }
+
+/* Guide Phases */
+.phase-card { background:var(--card); border-radius:var(--radius); padding:18px 22px; box-shadow:var(--shadow-sm); cursor:pointer; transition:all 0.25s; margin-bottom:10px; border-left:4px solid var(--sand); }
+.phase-card:hover { box-shadow:var(--shadow-md); }
+.phase-card.active { border-left-color:var(--accent); }
+.phase-header { display:flex; justify-content:space-between; align-items:center; }
+.phase-header h3 { font-size:14px; font-weight:600; }
+.phase-badge { font-size:10px; padding:3px 10px; border-radius:20px; font-weight:500; }
+.phase-detail { display:none; margin-top:14px; border-top:1px solid var(--cream); padding-top:14px; }
+.phase-detail.open { display:block; }
+.check-item { display:flex; align-items:flex-start; gap:8px; padding:5px 0; font-size:12px; color:var(--text-mid); }
+.check-item input[type="checkbox"] { appearance:none; width:16px; height:16px; border:2px solid var(--sand); border-radius:4px; cursor:pointer; flex-shrink:0; position:relative; transition:all 0.2s; background:var(--card); margin-top:2px; }
+.check-item input[type="checkbox"]:checked { background:var(--wood); border-color:var(--wood); }
+.check-item input[type="checkbox"]:checked::after { content:'✓'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:white; font-size:10px; font-weight:700; }
+.info-row { display:flex; gap:16px; flex-wrap:wrap; margin-top:10px; }
+.info-chip { font-size:11px; padding:5px 12px; border-radius:var(--radius-sm); background:var(--bg); color:var(--text-mid); }
+.info-chip strong { color:var(--text); }
+.caution-box { background:#FFF8F0; border:1px solid #F0DFC0; border-radius:var(--radius-sm); padding:12px 16px; margin-top:10px; }
+.caution-box h5 { font-size:12px; color:var(--warning); margin-bottom:4px; }
+.caution-box li { font-size:11px; color:var(--text-mid); margin-bottom:3px; }
+
+/* Cost */
+.cost-summary { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-bottom:24px; }
+.cost-card { background:var(--card); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow-sm); text-align:center; }
+.cost-card .amount { font-family:'DM Serif Display',serif; font-size:24px; }
+.cost-card .cost-label { font-size:10px; color:var(--taupe); letter-spacing:1.5px; text-transform:uppercase; margin-top:3px; }
+.cost-bar-wrap { background:var(--cream); border-radius:20px; height:8px; margin:16px 0 24px; overflow:hidden; }
+.cost-bar-fill { height:100%; border-radius:20px; background:linear-gradient(90deg,var(--accent),var(--wood)); transition:width 0.6s; }
+.cost-table { width:100%; background:var(--card); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); }
+.cost-table thead { background:var(--cream); }
+.cost-table th { text-align:left; padding:11px 14px; font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--taupe); font-weight:600; }
+.cost-table td { padding:11px 14px; font-size:12px; border-bottom:1px solid var(--cream); }
+.cost-table tr:last-child td { border-bottom:none; }
+.add-row-form { display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+.add-row-form input,.add-row-form select { padding:8px 12px; border:1px solid var(--sand); border-radius:var(--radius-sm); font-family:'Noto Sans KR'; font-size:12px; background:var(--card); color:var(--text); outline:none; }
+.add-row-form input:focus,.add-row-form select:focus { border-color:var(--wood); }
+.btn { padding:8px 18px; border:none; border-radius:var(--radius-sm); font-family:'Noto Sans KR'; font-size:12px; font-weight:500; cursor:pointer; transition:all 0.25s; }
+.btn-primary { background:var(--wood); color:var(--card); }
+.btn-primary:hover { background:var(--wood-dark); }
+.btn-outline { background:none; border:1px solid var(--sand); color:var(--text); }
+.btn-outline:hover { background:var(--cream); }
+.btn-danger { background:none; border:none; color:var(--danger); font-size:11px; padding:3px 6px; cursor:pointer; }
+
+/* Workers */
+.worker-card { background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow-sm); }
+.worker-card .worker-icon { font-size:28px; margin-bottom:8px; }
+.worker-card h4 { font-size:14px; font-weight:600; margin-bottom:4px; }
+.worker-card .worker-role { font-size:11px; color:var(--text-light); margin-bottom:8px; }
+.worker-stat { display:flex; justify-content:space-between; font-size:11px; padding:3px 0; border-bottom:1px solid var(--cream); }
+.worker-stat:last-child { border-bottom:none; }
+
+/* Terms */
+.term-item { background:var(--card); border-radius:var(--radius-sm); padding:14px 18px; box-shadow:var(--shadow-sm); }
+.term-item h4 { font-size:13px; font-weight:600; color:var(--wood); margin-bottom:4px; }
+.term-item p { font-size:12px; color:var(--text-mid); line-height:1.6; }
+
+/* Share */
+.share-preview { background:var(--card); border-radius:var(--radius-lg); padding:30px; box-shadow:var(--shadow-md); margin-bottom:20px; }
+.share-preview h3 { font-family:'DM Serif Display',serif; font-size:20px; margin-bottom:14px; }
+.share-notes { width:100%; min-height:100px; border:1px solid var(--sand); border-radius:var(--radius-sm); padding:14px; font-family:'Noto Sans KR'; font-size:12px; resize:vertical; outline:none; background:var(--bg); }
+.share-notes:focus { border-color:var(--wood); }
+.share-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+
+.toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(80px); background:var(--text); color:var(--card); padding:12px 24px; border-radius:30px; font-size:12px; font-weight:500; z-index:999; transition:transform 0.35s; box-shadow:var(--shadow-lg); }
+.toast.show { transform:translateX(-50%) translateY(0); }
+
+/* Progress bar */
+.progress-wrap { display:flex; align-items:center; gap:10px; margin-bottom:20px; }
+.progress-bar { flex:1; height:6px; background:var(--cream); border-radius:10px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--success),var(--accent)); border-radius:10px; transition:width 0.5s; }
+.progress-text { font-size:12px; font-weight:600; color:var(--wood); min-width:36px; }
+
+@media(max-width:640px) {
+  .hero { padding:32px 16px 28px; }
+  .nav-btn { padding:6px 10px; font-size:11px; }
+  .grid-2,.grid-3 { grid-template-columns:1fr; }
+  .cost-summary { grid-template-columns:1fr 1fr; }
+  .add-row-form { flex-direction:column; }
+  .timeline-row { grid-template-columns:60px 1fr; }
+}
+@media print {
+  .nav-bar,.add-row-form,.btn,.share-actions { display:none!important; }
+  .section { display:block!important; padding:16px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">Interior Project 2026</div>
+  <h1>Warm & <em>Analog</em> Living</h1>
+  <p class="hero-sub">22평 · 신동아아파트 · 웜 베이지 & 우드톤 · 서재형 거실 · 간접조명</p>
+  <div class="hero-specs">
+    <div class="hero-spec"><div class="num">22</div><div class="label">평수</div></div>
+    <div class="hero-spec"><div class="num">6</div><div class="label">공간</div></div>
+    <div class="hero-spec"><div class="num">9</div><div class="label">시공 단계</div></div>
+    <div class="hero-spec"><div class="num">~2,400</div><div class="label">만원 예산</div></div>
+  </div>
+</div>
+
+<div class="nav-bar">
+  <button class="nav-btn active" onclick="showSection('moodboard')">무드보드</button>
+  <button class="nav-btn" onclick="showSection('guide')">시공 가이드</button>
+  <button class="nav-btn" onclick="showSection('timeline')">일정표</button>
+  <button class="nav-btn" onclick="showSection('workers')">인력 관리</button>
+  <button class="nav-btn" onclick="showSection('cost')">비용 관리</button>
+  <button class="nav-btn" onclick="showSection('space')">공간 계획</button>
+  <button class="nav-btn" onclick="showSection('terms')">용어 사전</button>
+  <button class="nav-btn" onclick="showSection('share')">공유</button>
+</div>
+
+<div class="container">
+
+<!-- ==================== 1. MOODBOARD ==================== -->
+<div class="section active" id="sec-moodboard">
+  <div class="section-header">
+    <h2>Mood Board</h2>
+    <p>웜 베이지 & 우드 — 따뜻한 아날로그 감성의 미니멀 서재형 공간</p>
+  </div>
+
+  <div class="mood-direction">
+    <h3>"차갑지 않은 미니멀, 카페 같은 우리 집"</h3>
+    <p>순백이 아닌 <strong>웜 베이지~샌드 톤</strong> 벽면, <strong>미디엄 오크~월넛</strong> 원목 가구, <strong>린넨 커튼</strong>을 통해 스며드는 자연광, <strong>우물천장 + 간접조명 + 실링팬</strong>이 어우러지는 공간. 거실은 TV 대신 <strong>서재형 공간</strong>으로 구성하여 심플하고 지적인 분위기를 연출합니다. 22평의 한계를 따뜻한 톤 통일과 낮은 가구 배치로 극복하면서도, 하나씩 채워가는 아날로그 취향이 묻어나는 집.</p>
+  </div>
+
+  <div class="mood-palette">
+    <div class="palette-bar" style="background:#FAF5EE;"><span class="plabel">크림</span></div>
+    <div class="palette-bar" style="background:#EDE5D8;"><span class="plabel">아이보리</span></div>
+    <div class="palette-bar" style="background:#DDD0BC;"><span class="plabel">웜 베이지</span></div>
+    <div class="palette-bar" style="background:#C9B99A;"><span class="plabel">샌드</span></div>
+    <div class="palette-bar" style="background:#B5A282;"><span class="plabel">카멜</span></div>
+    <div class="palette-bar" style="background:#8B7355;"><span class="plabel">오크 우드</span></div>
+    <div class="palette-bar" style="background:#5C4A35;"><span class="plabel">다크 월넛</span></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="mood-card">
+      <div class="mood-img" style="background:linear-gradient(145deg,#EDE5D8 0%,#DDD0BC 40%,#D4C5AE 100%);">📚</div>
+      <div class="mood-card-body">
+        <h4>거실 — 서재형 리빙</h4>
+        <p>TV 없는 미니멀 거실. 벽면 빌트인 책장 + 원목 데스크 + 리딩 체어. <strong>우물천장에 실링팬</strong>을 중앙에 배치하고, 가장자리 <strong>간접조명(코브등)</strong>으로 은은한 분위기 연출. 매립등(다운라이트)은 최소화하고 <strong>레일조명</strong>으로 서재 영역 강조.</p>
+        <div class="mood-keywords">
+          <span class="tag">서재형 거실</span><span class="tag">우물천장</span><span class="tag">실링팬</span>
+          <span class="tag">간접조명</span><span class="tag">레일조명</span><span class="tag">원목 데스크</span>
+        </div>
+      </div>
+    </div>
+    <div class="mood-card">
+      <div class="mood-img" style="background:linear-gradient(145deg,#F0E8DC 0%,#E4D9C8 40%,#D8CBB6 100%);">🍳</div>
+      <div class="mood-card-body">
+        <h4>주방 — 내추럴 클린</h4>
+        <p>아이보리~베이지 톤 상하부장, 우드톤 상판 또는 따뜻한 쿼츠. 매트한 골드/브론즈 손잡이. 오픈 선반에 일상 소품 디스플레이. 싱크대 상판 교체 + 필름 시공으로 가성비 업그레이드.</p>
+        <div class="mood-keywords">
+          <span class="tag">아이보리 싱크대</span><span class="tag">우드 상판</span>
+          <span class="tag">매트 골드</span><span class="tag">오픈 선반</span>
+        </div>
+      </div>
+    </div>
+    <div class="mood-card">
+      <div class="mood-img" style="background:linear-gradient(145deg,#EBE2D4 0%,#DFD3C0 40%,#D5C7B2 100%);">🛏️</div>
+      <div class="mood-card-body">
+        <h4>침실 — 따뜻한 쉼터</h4>
+        <p>샌드~베이지 도배로 포근한 분위기. 린넨 침구와 내추럴 커튼. 원목 침대 프레임 + 사이드 테이블. 간접조명(시사시)으로 아늑함 극대화. 3000K 전구색 통일.</p>
+        <div class="mood-keywords">
+          <span class="tag">린넨 침구</span><span class="tag">원목 프레임</span>
+          <span class="tag">간접조명</span><span class="tag">내추럴 커튼</span>
+        </div>
+      </div>
+    </div>
+    <div class="mood-card">
+      <div class="mood-img" style="background:linear-gradient(145deg,#F5EDE2 0%,#E8DFD1 40%,#DDD3C3 100%);">🚿</div>
+      <div class="mood-card-body">
+        <h4>욕실 — 웜 클린</h4>
+        <p>아이보리~베이지 타일. 매트 골드 수전 통일. 원목 세면대장. 간접조명 거울(LED미러). 방수 철저하게 — 하자 시 아래층 피해.</p>
+        <div class="mood-keywords">
+          <span class="tag">베이지 타일</span><span class="tag">골드 수전</span>
+          <span class="tag">원목 세면대</span><span class="tag">LED 미러</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <h4>🏠 핵심 디자인 포인트</h4>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:10px;">
+      <div style="font-size:12px;color:var(--text-mid);line-height:1.7;">
+        <strong style="color:var(--wood);">우물천장 + 실링팬</strong><br>
+        우물 정(井)자 모양 천장. 간접조명을 설치하고 중앙에 실링팬 배치. 라운드형 우물천장이 트렌드. 목공+전기 작업 필요.
+      </div>
+      <div style="font-size:12px;color:var(--text-mid);line-height:1.7;">
+        <strong style="color:var(--wood);">간접조명 중심 설계</strong><br>
+        직접등(직부등) 최소화. 코브등(시사시 간접등), 레일조명, 매립등(다운라이트) 조합. 모든 조명 3000K 전구색 통일.
+      </div>
+      <div style="font-size:12px;color:var(--text-mid);line-height:1.7;">
+        <strong style="color:var(--wood);">서재형 거실 구성</strong><br>
+        TV 대신 벽면 책장 + 데스크. 리딩체어 + 스탠드조명. 낮은 가구 배치로 22평 공간감 극대화.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h4>📋 무드보드 만들기 TIP (오늘의집 민트B 참고)</h4>
+    <ul>
+      <li>무드보드 = 원하는 이미지를 한 데 모아보는 캔버스. 공간별(현관/거실/안방) 따로 만들면 업체 소통에 큰 도움</li>
+      <li>컬러 컨셉, 기존가구와 새 가구, 소품, 조명을 한 화면에 배치</li>
+      <li>바꾸지 않을 부분(기존가구, 바닥)과의 색상 매치도 고려</li>
+      <li>오늘의집, 핀터레스트, 네이버 리빙 등에서 사진 수집 → 한 화면에 정리</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== 2. GUIDE ==================== -->
+<div class="section" id="sec-guide">
+  <div class="section-header">
+    <h2>Construction Guide</h2>
+    <p>22평 반셀프 리모델링 9단계 — 각 단계를 클릭하면 상세 체크리스트가 펼쳐집니다</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="guide-progress" style="width:0%"></div></div>
+    <div class="progress-text" id="guide-progress-text">0%</div>
+  </div>
+
+  <div id="guide-phases"></div>
+</div>
+
+<!-- ==================== 3. TIMELINE ==================== -->
+<div class="section" id="sec-timeline">
+  <div class="section-header">
+    <h2>Schedule</h2>
+    <p>22평 반셀프 리모델링 전체 일정 — 약 3~4주 (영업일 15~20일)</p>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <h4>⚡ 일정 핵심 주의사항</h4>
+    <ul>
+      <li>각 업체 일정은 최소 1~2주 전 확정. 성수기(봄/가을)는 한 달 전 예약</li>
+      <li>양생 시간 필수 확보: 방수 48시간, 타일줄눈 24시간, 마루본드 24시간</li>
+      <li>자재 발주는 시공일 3~5일 전 완료</li>
+      <li>우천 시 외부 관련 작업(발코니) 지연 가능</li>
+    </ul>
+  </div>
+
+  <div id="timeline-chart"></div>
+</div>
+
+<!-- ==================== 4. WORKERS ==================== -->
+<div class="section" id="sec-workers">
+  <div class="section-header">
+    <h2>Workers</h2>
+    <p>시공에 필요한 전문 인력 11개 공종 — 일당 및 예상 투입일</p>
+  </div>
+  <div class="grid-3" id="workers-grid"></div>
+
+  <div class="card" style="margin-top:20px;">
+    <h4>💡 반셀프 인력 관리 TIP</h4>
+    <ul>
+      <li><strong>반드시 전문업체</strong>: 철거, 설비, 전기, 방수, 가스배관</li>
+      <li><strong>셀프 가능</strong>: 도배(페인트), 강화마루, PVC 걸레받이, 실리콘 코킹, 조명 기구 설치</li>
+      <li>인건비 총합 예상: 약 600만~1,100만원 (전체 공사비의 35~40%)</li>
+      <li>대금은 3회 분할(계약30% / 중도40% / 잔금30%) 지급이 일반적. 선금 전액 금물!</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== 5. COST ==================== -->
+<div class="section" id="sec-cost">
+  <div class="section-header">
+    <h2>Budget</h2>
+    <p>20평 기준 반셀프 리모델링 예상 견적 — 항목 추가/삭제 가능</p>
+  </div>
+
+  <div class="cost-summary">
+    <div class="cost-card"><div class="amount" id="budget-display">2,400</div><div class="cost-label">예산 (만원)</div></div>
+    <div class="cost-card"><div class="amount" id="spent-display" style="color:var(--warning)">0</div><div class="cost-label">지출 (만원)</div></div>
+    <div class="cost-card"><div class="amount" id="remain-display" style="color:var(--success)">2,400</div><div class="cost-label">잔액 (만원)</div></div>
+    <div class="cost-card"><div class="amount" id="percent-display">0%</div><div class="cost-label">집행률</div></div>
+  </div>
+
+  <div class="cost-bar-wrap"><div class="cost-bar-fill" id="cost-bar" style="width:0%"></div></div>
+
+  <div style="margin-bottom:12px;">
+    <label style="font-size:12px;color:var(--text-mid);">예산 설정 (만원): </label>
+    <input type="number" id="budget-input" value="2400" style="width:100px;padding:6px 10px;border:1px solid var(--sand);border-radius:var(--radius-sm);font-size:12px;" onchange="updateBudget()">
+  </div>
+
+  <table class="cost-table">
+    <thead><tr><th>카테고리</th><th>항목</th><th>금액(만원)</th><th>메모</th><th></th></tr></thead>
+    <tbody id="cost-tbody"></tbody>
+  </table>
+
+  <div class="add-row-form">
+    <select id="add-cat">
+      <option>철거</option><option>설비</option><option>전기</option><option>방수</option>
+      <option>타일</option><option>목공</option><option>마루</option><option>도배</option>
+      <option>필름/싱크대</option><option>조명</option><option>가구</option><option>기타</option>
+    </select>
+    <input id="add-name" placeholder="항목명">
+    <input id="add-amount" type="number" placeholder="금액(만원)" style="width:100px;">
+    <input id="add-memo" placeholder="메모">
+    <button class="btn btn-primary" onclick="addCostRow()">추가</button>
+  </div>
+</div>
+
+<!-- ==================== 6. SPACE ==================== -->
+<div class="section" id="sec-space">
+  <div class="section-header">
+    <h2>Space Plan</h2>
+    <p>22평 공간별 시공 포인트 — 거실 서재화 + 우물천장 + 간접조명 중심</p>
+  </div>
+  <div class="grid-2" id="space-grid"></div>
+</div>
+
+<!-- ==================== 7. TERMS ==================== -->
+<div class="section" id="sec-terms">
+  <div class="section-header">
+    <h2>Glossary</h2>
+    <p>리모델링 용어 A to Z — 오늘의집 가이드 EP5 참고</p>
+  </div>
+  <div class="grid-3" id="terms-grid"></div>
+</div>
+
+<!-- ==================== 8. SHARE ==================== -->
+<div class="section" id="sec-share">
+  <div class="section-header">
+    <h2>Share</h2>
+    <p>프로젝트 요약을 가족/업체와 공유하세요</p>
+  </div>
+  <div class="share-preview">
+    <h3>신동아 인테리어 프로젝트</h3>
+    <p style="font-size:13px;color:var(--text-mid);">22평 · 웜 베이지 미니멀 · 서재형 거실 · 우물천장 + 실링팬 · 간접조명</p>
+    <div style="display:flex;gap:24px;margin:16px 0;flex-wrap:wrap;">
+      <div style="text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:20px;">2,400만</div><div style="font-size:10px;color:var(--taupe);">예산</div></div>
+      <div style="text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:20px;">3~4주</div><div style="font-size:10px;color:var(--taupe);">예상 기간</div></div>
+      <div style="text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:20px;">11공종</div><div style="font-size:10px;color:var(--taupe);">필요 인력</div></div>
+    </div>
+    <textarea class="share-notes" id="share-notes" placeholder="업체에게 전달할 메모를 적어보세요..."></textarea>
+    <div class="share-actions">
+      <button class="btn btn-primary" onclick="copyShareText()">📋 텍스트 복사</button>
+      <button class="btn btn-outline" onclick="window.print()">🖨️ 인쇄/PDF</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="toast" id="toast"></div>
+<script>
+// ===== NAVIGATION =====
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-'+name).classList.add('active');
+  event.target.classList.add('active');
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ===== GUIDE DATA =====
+const phases = [
+  {
+    name: "준비", icon: "📋", duration: "1~2주", cost: "10만~370만",
+    workers: "인테리어 디자이너, 현장 소장",
+    checklist: [
+      "관리사무소 공사 신고서 제출 (7~14일 전)",
+      "입주민 동의서 징구 (직상/직하/양옆)",
+      "엘리베이터 보양 일정 협의",
+      "공용부 보양 범위 확인",
+      "시공 업체 3곳 이상 비교 견적 + 현장 실측",
+      "공사 계약서 작성 (범위/금액/기간/하자보수)",
+      "설계 도면 확인 (평면도/전개도/전기배치도)",
+      "자재 선정 및 발주 일정 확정"
+    ],
+    cautions: [
+      "계약서에 '공사 범위 상세 내역서' 첨부 필수 — 구두 약속은 분쟁 원인",
+      "공사 대금 3회 분할(계약30%/중도40%/잔금30%) — 선금 전액 절대 금물",
+      "업체 사업자등록증, 건설업면허, 하자보증보험 확인"
+    ]
+  },
+  {
+    name: "철거", icon: "🔨", duration: "1~2일", cost: "130만~290만",
+    workers: "철거팀 2~4명, 폐기물 처리 업체",
+    checklist: [
+      "기존 벽지/천장지 제거",
+      "기존 바닥재(마루/장판) 제거",
+      "욕실/주방 타일 철거 (벽+바닥)",
+      "주방 싱크대/상하부장 철거",
+      "문짝/문틀(도어프레임) 철거",
+      "붙박이장/신발장 등 가구 철거",
+      "철거 폐기물 분리 및 반출 (5톤 마대)",
+      "철거 후 구조체 상태 확인 — 균열/누수/석면 점검"
+    ],
+    cautions: [
+      "내력벽(구조벽) 절대 철거 금지 — 도면 확인 필수",
+      "2000년 이전 준공: 석면(텍스) 천장 가능성 → 전문 해체 업체 필요",
+      "작업시간: 평일 09~18시, 점심 12~13시 중단"
+    ]
+  },
+  {
+    name: "설비(배관)", icon: "🔧", duration: "2~3일", cost: "240만~550만",
+    workers: "설비기사 1~2명, 보일러기사 1명",
+    checklist: [
+      "급수관 교체 (아연도금관 → PPR 또는 STS관)",
+      "배수관 점검/교체 (PVC)",
+      "난방배관(엑셀파이프) + 분배기(헤더) 교체",
+      "욕실 배수트랩 교체 + 방수턱 확인",
+      "주방 배수관 구배(기울기) 확인 — 최소 1/50",
+      "세탁기 급수/배수 위치 확인",
+      "난방배관 수압 테스트(10kg/㎠, 24시간)"
+    ],
+    cautions: [
+      "수압 테스트 24시간 필수 — 누수 미발견 시 바닥 전체 재시공",
+      "배수관 이동 시 구배 부족 → 역류/악취 발생",
+      "수직 배관(공용)은 개인 변경 불가 — 관리사무소 협의"
+    ]
+  },
+  {
+    name: "목공", icon: "🪚", duration: "3~5일", cost: "240만~545만",
+    workers: "목수 1~2명, 보조 0~1명",
+    checklist: [
+      "천장 평탄화 (경량철골 + 석고보드 9.5T)",
+      "우물천장 시공 (실링팬 + 간접조명 박스)",
+      "천장 몰딩(크라운/평몰딩) 시공",
+      "걸레받이(베이스보드) 시공",
+      "문틀(ABS/래핑) 설치",
+      "간접조명 박스(시사시/코브등) 시공",
+      "붙박이장/신발장/서재 책장 틀 시공",
+      "벽면 합판 보강 (TV/선반 하중 부위)"
+    ],
+    cautions: [
+      "목공 전 전기배선 완료 필수 — 목공 후 배선 추가 = 천장 해체",
+      "벽걸이/붙박이 부위 합판 보강(18T 이상) 필수",
+      "욕실/주방 인접: 방습 석고보드(초록색) 사용"
+    ]
+  },
+  {
+    name: "전기", icon: "⚡", duration: "1~2일", cost: "80만~200만",
+    workers: "전기기사 1~2명",
+    checklist: [
+      "분전반 교체 (8→12~16회로, ELB 포함)",
+      "콘센트 이설/추가 (매립형 USB 포함)",
+      "스위치 이설/교체 (디밍/스마트 스위치)",
+      "조명 배선 (매립등/간접등/레일조명)",
+      "에어컨 전용 회로 신설",
+      "주방 고용량 가전 전용 배선",
+      "통신 배선 정리 (인터넷/TV)",
+      "절연저항 측정 + 안전검사"
+    ],
+    cautions: [
+      "차단기 OFF 후 작업 — 검전기로 무전압 확인",
+      "15년 이상 아파트: 알루미늄 배선/절연 열화 확인",
+      "시공 후 절연저항 0.2MΩ 이상 확인 (화재 예방)"
+    ]
+  },
+  {
+    name: "바닥(마루)", icon: "🪵", duration: "1~2일", cost: "230만~370만",
+    workers: "마루기사 2명",
+    checklist: [
+      "바닥 레벨링 상태 점검 (3mm이상 편차 시 셀프레벨링)",
+      "방습 필름 시공 (강화마루 필수)",
+      "언더레이(완충재) 시공",
+      "마루판 시공 (벽에서 5~8mm 팽창줄눈 확보)",
+      "걸레받이(몰딩) 시공",
+      "문턱(T자 몰딩) 시공",
+      "시공 후 양생 (본드: 24~48시간 무하중)"
+    ],
+    cautions: [
+      "마루 자재 48시간 전 현장 반입 — 온습도 적응(어클리메이션)",
+      "마루→도배→몰딩 순서가 일반적. 업체와 사전 협의",
+      "강마루(중급, 평당6~10만) 추천. 강화마루는 통통 소리 한계"
+    ]
+  },
+  {
+    name: "도배", icon: "🎨", duration: "1~2일", cost: "120만~200만",
+    workers: "도배기사 2명 (1조)",
+    checklist: [
+      "기존 벽지 제거 (스크래퍼/물분무기)",
+      "벽면 퍼티 작업 (균열/못자국/곰팡이 처리)",
+      "초배지 작업 (합지 시 필수, 실크는 생략 가능)",
+      "풀칠 및 벽지 재단",
+      "천장 도배 (천장 먼저 → 벽면)",
+      "벽면 도배 (창문쪽부터 시작)",
+      "문선/몰딩/걸레받이 주변 마감",
+      "콘센트/스위치/에어컨 배관 주변 칼질"
+    ],
+    cautions: [
+      "도배는 모든 먼지 공정 완료 후 마지막에 진행",
+      "시공 후 48시간 환기 금지 — 급건조 시 이음새 벌어짐",
+      "곰팡이 이력 벽면: 방지제 처리 필수. 덧도배 시 재발 100%"
+    ]
+  },
+  {
+    name: "필름/싱크대", icon: "✨", duration: "2~3일", cost: "150만~250만",
+    workers: "필름기사 1~2명, 싱크대기사 1~2명",
+    checklist: [
+      "기존 가구/싱크대 상태 점검",
+      "기존 시트지 제거 (히팅건)",
+      "표면 사포질 + 프라이머 도포",
+      "인테리어 필름 재단/부착",
+      "싱크대 상판 교체 (인조대리석/STS)",
+      "싱크볼 + 수전 교체/연결",
+      "손잡이/경첩 하드웨어 교체",
+      "하부장 내부 방수 처리"
+    ],
+    cautions: [
+      "필름 시공은 도배 전 완료 — 칼질로 벽지 손상 가능",
+      "싱크대 상판 교체 시 하부장 상태(습기/처짐) 확인",
+      "필름 부착 전 기름기/먼지 완벽 제거(탈지) 필수"
+    ]
+  },
+  {
+    name: "하자 체크", icon: "✅", duration: "1~7일", cost: "0~50만",
+    workers: "집주인(셀프) 또는 전문 감리사",
+    checklist: [
+      "도배 하자 (이음새/기포/울음/곰팡이)",
+      "마루 하자 (들뜸/삐걱소리/단차/스크래치)",
+      "타일 하자 (들뜸/균열/줄눈/배수기울기)",
+      "설비 하자 (수전누수/배수역류/변기/세면대)",
+      "전기 하자 (스위치/콘센트/조명/차단기)",
+      "목공 하자 (문짝틈/경첩/몰딩/걸레받이)",
+      "방수 테스트 (배수구 막고 물 24시간 방치)",
+      "보일러 가동 후 전 방 난방 균일 확인"
+    ],
+    cautions: [
+      "잔금(10~20%)은 하자 보수 완료 후 지급 — 가장 강력한 협상 수단",
+      "낮(자연광) + 밤(조명) 두 번 점검해야 함",
+      "모든 하자 사진+위치+내용 문서화 → 카카오톡/문자로 전송 (구두 통보 증거력 없음)"
+    ]
+  }
+];
+
+// Render guide
+function renderGuide() {
+  const container = document.getElementById('guide-phases');
+  let totalChecks = 0, doneChecks = 0;
+  let html = '';
+  phases.forEach((p, i) => {
+    const checks = p.checklist.map((c, ci) => {
+      const key = 'g_'+i+'_'+ci;
+      const checked = localStorage.getItem(key) === '1';
+      if (checked) doneChecks++;
+      totalChecks++;
+      return '<div class="check-item"><input type="checkbox" id="'+key+'" '+(checked?'checked':'')+' onchange="toggleCheck('+i+','+ci+')"><label for="'+key+'" style="'+(checked?'text-decoration:line-through;color:var(--taupe)':'')+'">'+c+'</label></div>';
+    }).join('');
+    const cautions = p.cautions.map(c => '<li>'+c+'</li>').join('');
+    html += '<div class="phase-card" onclick="togglePhase('+i+')">';
+    html += '<div class="phase-header"><h3>'+p.icon+' Step '+(i+1)+'. '+p.name+'</h3>';
+    html += '<div style="display:flex;gap:6px;align-items:center;">';
+    html += '<span class="tag">'+p.duration+'</span>';
+    html += '<span class="tag tag-warning">'+p.cost+'</span>';
+    html += '</div></div>';
+    html += '<div style="font-size:11px;color:var(--text-light);margin-top:4px;">인력: '+p.workers+'</div>';
+    html += '<div class="phase-detail" id="phase-detail-'+i+'">';
+    html += '<div style="margin-bottom:10px;"><strong style="font-size:12px;">체크리스트</strong></div>';
+    html += checks;
+    html += '<div class="caution-box"><h5>⚠️ 핵심 주의사항</h5><ul>'+cautions+'</ul></div>';
+    html += '</div></div>';
+  });
+  container.innerHTML = html;
+  const pct = totalChecks > 0 ? Math.round(doneChecks/totalChecks*100) : 0;
+  document.getElementById('guide-progress').style.width = pct+'%';
+  document.getElementById('guide-progress-text').textContent = pct+'%';
+}
+function togglePhase(i) {
+  const el = document.getElementById('phase-detail-'+i);
+  el.classList.toggle('open');
+}
+function toggleCheck(i, ci) {
+  const key = 'g_'+i+'_'+ci;
+  const el = document.getElementById(key);
+  localStorage.setItem(key, el.checked ? '1' : '0');
+  event.stopPropagation();
+  renderGuide();
+}
+
+// ===== TIMELINE =====
+function renderTimeline() {
+  const schedule = [
+    { day: "Day 1~2", task: "보양 + 철거", color: "#B86E5E", detail: "공용부 보양, 전체 철거, 폐기물 반출" },
+    { day: "Day 2~3", task: "설비(배관)", color: "#C9A04A", detail: "급수/배수/난방 배관 교체" },
+    { day: "Day 3~4", task: "전기 공사", color: "#D4A843", detail: "배선/콘센트/스위치/분전반 (설비와 동시 가능)" },
+    { day: "Day 5", task: "방수 공사", color: "#5B8DB8", detail: "욕실/발코니 방수 → 48시간 양생" },
+    { day: "Day 6~7", task: "양생 대기", color: "#9A8E80", detail: "방수 양생 48시간 대기" },
+    { day: "Day 8~9", task: "타일 공사", color: "#7EA06B", detail: "욕실(벽+바닥)/주방/현관 타일" },
+    { day: "Day 10~12", task: "목공 공사", color: "#8B7355", detail: "우물천장+실링팬, 간접등박스, 문틀, 붙박이장, 서재책장" },
+    { day: "Day 13", task: "페인트/탄성코트", color: "#B5A282", detail: "천장 페인트, 발코니 탄성코트, 목공 도장" },
+    { day: "Day 14~15", task: "마루 시공", color: "#C9B99A", detail: "강마루/강화마루 + 몰딩" },
+    { day: "Day 15~16", task: "필름/싱크대", color: "#BFA57A", detail: "가구 필름 + 싱크대 상판 교체" },
+    { day: "Day 17~18", task: "도배", color: "#D6C8B4", detail: "전체 도배 (모든 먼지 공정 후)" },
+    { day: "Day 19", task: "설비/전기 마감", color: "#C4A060", detail: "수전/변기/세면대 설치, 조명/콘센트커버 설치" },
+    { day: "Day 20", task: "입주 청소", color: "#9A8B76", detail: "전문 청소팀 (새집증후군 방지)" },
+    { day: "Day 21~", task: "하자 체크", color: "#7EA06B", detail: "전체 점검 + 보수 요청" }
+  ];
+  let html = '';
+  schedule.forEach(s => {
+    html += '<div class="timeline-row">';
+    html += '<div class="timeline-day">'+s.day+'</div>';
+    html += '<div class="timeline-bar" style="background:'+s.color+';">'+s.task+'<span style="opacity:0.8;font-size:11px;margin-left:8px;">— '+s.detail+'</span></div>';
+    html += '</div>';
+  });
+  document.getElementById('timeline-chart').innerHTML = html;
+}
+
+// ===== WORKERS =====
+function renderWorkers() {
+  const workers = [
+    { icon:"🔨", name:"철거팀", role:"마감재 해체, 폐기물 반출", count:"2~3명", daily:"15~25만/인", days:"1~2일", total:"40~80만" },
+    { icon:"🔧", name:"설비기사", role:"급배수/난방 배관 교체·연결", count:"1~2명", daily:"25~35만", days:"2~3일", total:"80~150만" },
+    { icon:"🔥", name:"보일러기사", role:"보일러 연결, 난방 시운전", count:"1명", daily:"25~35만", days:"0.5일", total:"15~35만" },
+    { icon:"⚡", name:"전기기사", role:"배선/콘센트/분전반/조명", count:"1~2명", daily:"25~35만", days:"2~3일", total:"60~120만" },
+    { icon:"💧", name:"방수기사", role:"욕실/발코니 방수", count:"1~2명", daily:"25~30만", days:"1일", total:"40~80만" },
+    { icon:"🧱", name:"타일기사", role:"욕실/주방/현관 타일+줄눈", count:"1~2명", daily:"30~40만", days:"2~3일", total:"100~200만" },
+    { icon:"🪚", name:"목수", role:"천장/문틀/붙박이장/서재책장", count:"1~2명", daily:"25~35만", days:"3~5일", total:"80~150만" },
+    { icon:"🎨", name:"페인트공", role:"천장/벽 페인트, 탄성코트", count:"1~2명", daily:"20~30만", days:"1~2일", total:"40~80만" },
+    { icon:"🪵", name:"마루기사", role:"마루 시공 + 몰딩", count:"2명", daily:"팀40~50만", days:"1~2일", total:"50~80만" },
+    { icon:"✨", name:"필름기사", role:"가구/싱크대 필름 시공", count:"1~2명", daily:"20~30만", days:"1일", total:"50~120만" },
+    { icon:"🧹", name:"청소팀", role:"입주청소, 새집증후군 방지", count:"2~3명", daily:"팀20~35만", days:"0.5일", total:"20~35만" }
+  ];
+  let html = '';
+  workers.forEach(w => {
+    html += '<div class="worker-card">';
+    html += '<div class="worker-icon">'+w.icon+'</div>';
+    html += '<h4>'+w.name+'</h4>';
+    html += '<div class="worker-role">'+w.role+'</div>';
+    html += '<div class="worker-stat"><span>인원</span><span>'+w.count+'</span></div>';
+    html += '<div class="worker-stat"><span>일당</span><span>'+w.daily+'</span></div>';
+    html += '<div class="worker-stat"><span>소요일</span><span>'+w.days+'</span></div>';
+    html += '<div class="worker-stat"><span><strong>예상비용</strong></span><span><strong>'+w.total+'</strong></span></div>';
+    html += '</div>';
+  });
+  document.getElementById('workers-grid').innerHTML = html;
+}
+
+// ===== COST =====
+const defaultCosts = [
+  { cat:"철거", name:"철거 인건비", amount:155, memo:"벽지/바닥/타일/가구" },
+  { cat:"설비", name:"급수+배수+난방", amount:350, memo:"PPR관 기준" },
+  { cat:"전기", name:"분전반+배선+조명", amount:150, memo:"우물천장 간접등 포함" },
+  { cat:"방수", name:"욕실 방수", amount:60, memo:"욕실1개소" },
+  { cat:"타일", name:"욕실+주방+현관", amount:300, memo:"국산 중급 포세린" },
+  { cat:"목공", name:"우물천장+문틀+서재", amount:400, memo:"우물천장+실링팬+책장틀" },
+  { cat:"마루", name:"강마루 시공", amount:291, memo:"22평 전체" },
+  { cat:"도배", name:"실크 도배", amount:150, memo:"22평 전체" },
+  { cat:"필름/싱크대", name:"필름+상판교체", amount:200, memo:"주방+가구 필름" },
+  { cat:"조명", name:"조명기구", amount:100, memo:"실링팬+레일+매립등+간접등" },
+  { cat:"기타", name:"폐기물 처리", amount:70, memo:"5톤마대 2~3대" },
+  { cat:"기타", name:"입주 청소", amount:25, memo:"새집증후군 방지" },
+  { cat:"기타", name:"예비비(10%)", amount:240, memo:"추가공사 대비" }
+];
+
+let costs = JSON.parse(localStorage.getItem('costs_v5')) || defaultCosts;
+let budget = parseInt(localStorage.getItem('budget_v5')) || 2400;
+
+function renderCosts() {
+  const tbody = document.getElementById('cost-tbody');
+  let total = 0;
+  let html = '';
+  costs.forEach((c, i) => {
+    total += c.amount;
+    html += '<tr><td><span class="tag">'+c.cat+'</span></td><td>'+c.name+'</td><td style="font-weight:600;">'+c.amount.toLocaleString()+'</td><td style="font-size:11px;color:var(--text-light);">'+c.memo+'</td><td><button class="btn-danger" onclick="removeCost('+i+')">삭제</button></td></tr>';
+  });
+  tbody.innerHTML = html;
+  const remain = budget - total;
+  const pct = budget > 0 ? Math.round(total/budget*100) : 0;
+  document.getElementById('budget-display').textContent = budget.toLocaleString();
+  document.getElementById('spent-display').textContent = total.toLocaleString();
+  document.getElementById('spent-display').style.color = total > budget ? 'var(--danger)' : 'var(--warning)';
+  document.getElementById('remain-display').textContent = remain.toLocaleString();
+  document.getElementById('remain-display').style.color = remain < 0 ? 'var(--danger)' : 'var(--success)';
+  document.getElementById('percent-display').textContent = pct + '%';
+  document.getElementById('cost-bar').style.width = Math.min(pct,100)+'%';
+  document.getElementById('cost-bar').style.background = pct > 100 ? 'var(--danger)' : '';
+  document.getElementById('budget-input').value = budget;
+}
+function addCostRow() {
+  const cat = document.getElementById('add-cat').value;
+  const name = document.getElementById('add-name').value;
+  const amount = parseInt(document.getElementById('add-amount').value) || 0;
+  const memo = document.getElementById('add-memo').value;
+  if (!name || !amount) return showToast('항목명과 금액을 입력하세요');
+  costs.push({cat,name,amount,memo});
+  localStorage.setItem('costs_v5', JSON.stringify(costs));
+  renderCosts();
+  document.getElementById('add-name').value = '';
+  document.getElementById('add-amount').value = '';
+  document.getElementById('add-memo').value = '';
+  showToast('항목이 추가되었습니다');
+}
+function removeCost(i) { costs.splice(i,1); localStorage.setItem('costs_v5',JSON.stringify(costs)); renderCosts(); showToast('삭제됨'); }
+function updateBudget() { budget = parseInt(document.getElementById('budget-input').value)||2400; localStorage.setItem('budget_v5',budget); renderCosts(); }
+
+// ===== SPACE =====
+function renderSpace() {
+  const spaces = [
+    { icon:"📚", name:"거실 (서재형)", size:"약 6평",
+      items:["벽면 빌트인 책장 (목공)","원목 데스크 + 리딩체어","우물천장 + 실링팬 (중앙)","코브 간접조명 (천장 가장자리)","레일조명 (서재 영역 포커스)","매립등(다운라이트) 최소 배치","3000K 전구색 통일","린넨 커튼 + 낮은 가구 배치"] },
+    { icon:"🍳", name:"주방", size:"약 3평",
+      items:["싱크대 필름 + 상판 교체","아이보리~베이지 상하부장","매트 골드/브론즈 손잡이","오픈 우드 선반","인덕션 전용 회로","주방 하부 간접등","주방 벽 서브웨이 타일"] },
+    { icon:"🛏️", name:"안방", size:"약 4평",
+      items:["샌드~베이지 실크 도배","원목 침대 프레임","린넨 침구 + 내추럴 커튼","사이드 테이블 + 스탠드","간접조명(시사시) 코브등","걸레받이 MDF 또는 PVC","3000K 전구색"] },
+    { icon:"🛏️", name:"작은방", size:"약 3평",
+      items:["서재/작업실 또는 드레스룸","붙박이장 (목공 틀+도어)","데스크 배치 고려","충분한 콘센트 배치","간접 조명"] },
+    { icon:"🚿", name:"욕실", size:"약 1.5평",
+      items:["전체 철거 후 재시공","방수 → 타일(아이보리/베이지)","매트 골드 수전 통일","원목 세면대장","LED 미러 (간접조명)","환기팬 교체","논슬립 바닥 타일"] },
+    { icon:"🏠", name:"현관+다용도실", size:"약 1.5평",
+      items:["현관 타일 교체 (포인트 패턴)","신발장 리폼 또는 교체","현관 센서등","다용도실 수납 최적화","세탁기 급배수 확인"] }
+  ];
+  let html = '';
+  spaces.forEach(s => {
+    html += '<div class="card">';
+    html += '<div style="font-size:28px;margin-bottom:8px;">'+s.icon+'</div>';
+    html += '<h3>'+s.name+'</h3>';
+    html += '<div style="font-size:11px;color:var(--taupe);margin-bottom:12px;">'+s.size+'</div>';
+    html += '<ul>';
+    s.items.forEach(item => { html += '<li>'+item+'</li>'; });
+    html += '</ul></div>';
+  });
+  document.getElementById('space-grid').innerHTML = html;
+}
+
+// ===== TERMS =====
+function renderTerms() {
+  const terms = [
+    { term:"우물천장", desc:"우물 정(井)자 모양으로 생긴 천장. 간접조명을 설치하고 실링팬을 두는 데 적합. 라운드형이 요즘 트렌드." },
+    { term:"시사시 (간접박스)", desc:"천장에서 튀어나온 부분(차양). 간접조명을 위한 구조물. 요즘은 간접조명 자체를 시사시라고도 부름." },
+    { term:"웨인스코팅", desc:"벽 아래쪽에 설치하는 네모난 틀/액자 모양의 장식. 클래식한 분위기 연출. 도배 전 몰딩 작업 필요." },
+    { term:"나라시", desc:"평탄화 작업. 바닥이나 벽면을 평평하게 만드는 것. 셀프레벨링이 대표적." },
+    { term:"양생", desc:"콘크리트/방수/본드 등이 마르도록 하는 과정. '양생중'이면 아직 덜 마른 상태. 밟거나 하면 안 됨." },
+    { term:"덴조", desc:"천장 작업 전체를 의미. 시공 시작 전 논의 단계에서 '덴조 어떻게 할까요?'라고 하면 천장 스타일을 묻는 것." },
+    { term:"하리 (보)", desc:"기둥과 기둥 사이를 잇는 구조물(보). 바닥의 가로지르는 것도 하리. 천장형 냉난방기 설치나 노출천장 시 자주 등장." },
+    { term:"모루유리", desc:"유리 표면에 줄무늬나 요철이 들어간 유리. 빛은 통과시키지만 시선은 가려줌. 중문, 욕실 도어 등에 활용." },
+    { term:"폴딩도어", desc:"접이식 문. 발코니 확장 후 거실이 넓어 보이게 하거나, 수납공간 개방감을 줄 때 사용." },
+    { term:"매매 / 루배", desc:"매매는 m 단위의 면적(1㎡). 루배는 부피(1㎥). 타일 구매 시 '9매매 붙여주세요' = 9㎡ 시공." },
+    { term:"T (티)", desc:"장판/합판 두께 단위(mm). '2.0T 장판' = 두께 2.0mm 장판." },
+    { term:"세시 / 연적 / 평", desc:"세시 1평 = 300mm × 300mm. (가로mm × 세로mm) ÷ 90,000 = 세시 평수. 타일 시공 면적 계산용." },
+    { term:"1통", desc:"1통은 한 사람의 하루 인건비. '도배 5통' = 인건비 50만원(1통 10만원 기준)." },
+    { term:"1식", desc:"1식은 작업 한 건의 비용. 정해진 양 없이 비슷한 의미로 쓰임. 타일은 세시, 도배는 통 단위가 일반적." },
+    { term:"보양", desc:"공사 중 기존 마감재/공용부를 보호하기 위해 비닐·합판으로 덮는 작업. 엘리베이터/복도 보양 필수." },
+    { term:"전개도", desc:"각 벽면을 펼쳐서 보여주는 도면. 타일 패턴, 콘센트 위치, 수전 높이 등을 확인하는 데 사용." },
+    { term:"기성금", desc:"공사 진행률에 따라 분할 지급하는 금액. 계약금(30%) → 중도금(40%) → 잔금(30%)이 일반적." },
+    { term:"반셀프", desc:"전문 시공(철거/설비/전기)은 업체에, 도배/페인트/소품은 직접 하는 방식. 20~30% 비용 절감 가능." }
+  ];
+  let html = '';
+  terms.forEach(t => {
+    html += '<div class="term-item"><h4>'+t.term+'</h4><p>'+t.desc+'</p></div>';
+  });
+  document.getElementById('terms-grid').innerHTML = html;
+}
+
+// ===== SHARE =====
+function copyShareText() {
+  let total = costs.reduce((s,c) => s+c.amount, 0);
+  let text = '🏠 신동아 인테리어 프로젝트\n';
+  text += '22평 · 웜 베이지 미니멀 · 서재형 거실\n';
+  text += '우물천장 + 실링팬 + 간접조명\n\n';
+  text += '예산: ' + budget.toLocaleString() + '만원\n';
+  text += '지출: ' + total.toLocaleString() + '만원\n';
+  text += '잔액: ' + (budget-total).toLocaleString() + '만원\n\n';
+  text += '--- 비용 내역 ---\n';
+  costs.forEach(c => { text += '['+c.cat+'] '+c.name+': '+c.amount+'만원\n'; });
+  const notes = document.getElementById('share-notes').value;
+  if (notes) text += '\n--- 메모 ---\n' + notes;
+  navigator.clipboard.writeText(text).then(() => showToast('클립보드에 복사되었습니다'));
+}
+
+// ===== INIT =====
+renderGuide();
+renderTimeline();
+renderWorkers();
+renderCosts();
+renderSpace();
+renderTerms();
+</script>
+</body>
+</html>
