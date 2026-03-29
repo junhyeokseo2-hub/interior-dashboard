@@ -148,6 +148,41 @@ body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--
 .toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(80px); background:var(--text); color:var(--card); padding:12px 24px; border-radius:30px; font-size:12px; font-weight:500; z-index:999; transition:transform 0.35s; box-shadow:var(--shadow-lg); }
 .toast.show { transform:translateX(-50%) translateY(0); }
 
+/* Moodboard Canvas */
+.mb-canvas { background:var(--card); border-radius:var(--radius-lg); padding:28px; box-shadow:var(--shadow-md); margin-bottom:28px; position:relative; overflow:hidden; }
+.mb-canvas::before { content:attr(data-space); position:absolute; top:16px; right:20px; font-family:'DM Serif Display',serif; font-size:60px; color:rgba(58,50,41,0.03); pointer-events:none; }
+.mb-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px; flex-wrap:wrap; gap:12px; }
+.mb-title { font-family:'DM Serif Display',serif; font-size:22px; font-weight:400; }
+.mb-subtitle { font-size:11px; color:var(--text-light); margin-top:2px; }
+.mb-colors { display:flex; gap:3px; align-items:center; }
+.mb-color { width:28px; height:28px; border-radius:50%; border:2px solid white; box-shadow:0 1px 4px rgba(0,0,0,0.1); position:relative; cursor:default; }
+.mb-color::after { content:attr(data-name); position:absolute; bottom:-18px; left:50%; transform:translateX(-50%); font-size:7px; color:var(--text-light); white-space:nowrap; letter-spacing:0.5px; opacity:0; transition:opacity 0.2s; }
+.mb-color:hover::after { opacity:1; }
+.mb-body { display:grid; gap:12px; }
+.mb-body.layout-living { grid-template-columns:1fr 1fr 1fr; grid-template-rows:auto auto auto; }
+.mb-body.layout-kitchen { grid-template-columns:1fr 1fr 1fr; grid-template-rows:auto auto; }
+.mb-body.layout-bedroom { grid-template-columns:1fr 1fr; grid-template-rows:auto auto auto; }
+.mb-body.layout-bath { grid-template-columns:1fr 1fr 1fr; grid-template-rows:auto auto; }
+.mb-body.layout-entry { grid-template-columns:1fr 1fr 1fr; grid-template-rows:auto auto; }
+.mb-item { border-radius:var(--radius-sm); overflow:hidden; display:flex; flex-direction:column; }
+.mb-item-visual { display:flex; align-items:center; justify-content:center; min-height:80px; font-size:32px; position:relative; }
+.mb-item-visual.tall { min-height:120px; }
+.mb-item-visual.wide { min-height:60px; }
+.mb-item-label { padding:8px 10px; font-size:11px; font-weight:500; color:var(--text); }
+.mb-item-desc { padding:0 10px 8px; font-size:10px; color:var(--text-light); line-height:1.5; }
+.mb-item-label .item-tag { font-size:8px; padding:2px 6px; border-radius:10px; background:var(--accent); color:white; margin-left:4px; vertical-align:middle; font-weight:600; }
+.mb-span-2 { grid-column:span 2; }
+.mb-span-3 { grid-column:span 3; }
+.mb-span-r2 { grid-row:span 2; }
+.mb-divider { grid-column:1/-1; height:1px; background:var(--cream); margin:4px 0; }
+.mb-floorplan { border:2px dashed var(--sand); border-radius:var(--radius-sm); padding:12px; display:flex; align-items:center; justify-content:center; min-height:100px; }
+.mb-floorplan-label { font-size:9px; color:var(--taupe); text-align:center; line-height:1.5; }
+.mb-note { background:var(--bg); border-radius:var(--radius-sm); padding:10px 12px; font-size:10px; color:var(--text-mid); line-height:1.6; grid-column:1/-1; }
+@media(max-width:640px) {
+  .mb-body { grid-template-columns:1fr 1fr!important; }
+  .mb-span-3 { grid-column:span 2; }
+}
+
 /* Progress bar */
 .progress-wrap { display:flex; align-items:center; gap:10px; margin-bottom:20px; }
 .progress-bar { flex:1; height:6px; background:var(--cream); border-radius:10px; overflow:hidden; }
@@ -200,14 +235,14 @@ body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--
 <div class="section active" id="sec-moodboard">
   <div class="section-header">
     <h2>Mood Board</h2>
-    <p>웜 베이지 & 우드 — 따뜻한 아날로그 감성의 미니멀 서재형 공간</p>
+    <p>공간별 비주얼 무드보드 — 컬러 컨셉, 마감재, 가구, 조명을 한 캔버스에</p>
   </div>
 
+  <!-- === 전체 컨셉 === -->
   <div class="mood-direction">
     <h3>"차갑지 않은 미니멀, 카페 같은 우리 집"</h3>
-    <p>순백이 아닌 <strong>웜 베이지~샌드 톤</strong> 벽면, <strong>미디엄 오크~월넛</strong> 원목 가구, <strong>린넨 커튼</strong>을 통해 스며드는 자연광, <strong>우물천장 + 간접조명 + 실링팬</strong>이 어우러지는 공간. 거실은 TV 대신 <strong>서재형 공간</strong>으로 구성하여 심플하고 지적인 분위기를 연출합니다. 22평의 한계를 따뜻한 톤 통일과 낮은 가구 배치로 극복하면서도, 하나씩 채워가는 아날로그 취향이 묻어나는 집.</p>
+    <p>22평 · 웜 베이지~샌드 벽면 · 오크~월넛 원목 가구 · 린넨 커튼 · 우물천장 + 실링팬 + 간접조명 · 서재형 거실 · 3000K 전구색 통일</p>
   </div>
-
   <div class="mood-palette">
     <div class="palette-bar" style="background:#FAF5EE;"><span class="plabel">크림</span></div>
     <div class="palette-bar" style="background:#EDE5D8;"><span class="plabel">아이보리</span></div>
@@ -218,80 +253,296 @@ body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--
     <div class="palette-bar" style="background:#5C4A35;"><span class="plabel">다크 월넛</span></div>
   </div>
 
-  <div class="grid-2">
-    <div class="mood-card">
-      <div class="mood-img" style="background:linear-gradient(145deg,#EDE5D8 0%,#DDD0BC 40%,#D4C5AE 100%);">📚</div>
-      <div class="mood-card-body">
-        <h4>거실 — 서재형 리빙</h4>
-        <p>TV 없는 미니멀 거실. 벽면 빌트인 책장 + 원목 데스크 + 리딩 체어. <strong>우물천장에 실링팬</strong>을 중앙에 배치하고, 가장자리 <strong>간접조명(코브등)</strong>으로 은은한 분위기 연출. 매립등(다운라이트)은 최소화하고 <strong>레일조명</strong>으로 서재 영역 강조.</p>
-        <div class="mood-keywords">
-          <span class="tag">서재형 거실</span><span class="tag">우물천장</span><span class="tag">실링팬</span>
-          <span class="tag">간접조명</span><span class="tag">레일조명</span><span class="tag">원목 데스크</span>
-        </div>
+  <!-- === 1. 거실 (서재형) === -->
+  <div class="mb-canvas" data-space="Living">
+    <div class="mb-header">
+      <div>
+        <div class="mb-title">거실 — 서재형 리빙</div>
+        <div class="mb-subtitle">약 6평 · 우물천장 + 실링팬 + 간접조명 · 서재 겸 리빙</div>
+      </div>
+      <div class="mb-colors">
+        <div class="mb-color" style="background:#FAF5EE;" data-name="크림 벽"></div>
+        <div class="mb-color" style="background:#EDE5D8;" data-name="아이보리 도배"></div>
+        <div class="mb-color" style="background:#C9B99A;" data-name="린넨 커튼"></div>
+        <div class="mb-color" style="background:#8B7355;" data-name="오크 가구"></div>
+        <div class="mb-color" style="background:#5C4A35;" data-name="월넛 포인트"></div>
       </div>
     </div>
-    <div class="mood-card">
-      <div class="mood-img" style="background:linear-gradient(145deg,#F0E8DC 0%,#E4D9C8 40%,#D8CBB6 100%);">🍳</div>
-      <div class="mood-card-body">
-        <h4>주방 — 내추럴 클린</h4>
-        <p>아이보리~베이지 톤 상하부장, 우드톤 상판 또는 따뜻한 쿼츠. 매트한 골드/브론즈 손잡이. 오픈 선반에 일상 소품 디스플레이. 싱크대 상판 교체 + 필름 시공으로 가성비 업그레이드.</p>
-        <div class="mood-keywords">
-          <span class="tag">아이보리 싱크대</span><span class="tag">우드 상판</span>
-          <span class="tag">매트 골드</span><span class="tag">오픈 선반</span>
+    <div class="mb-body layout-living">
+      <div class="mb-item mb-span-2 mb-span-r2" style="background:linear-gradient(160deg,#EDE5D8,#DDD0BC);">
+        <div class="mb-item-visual tall" style="font-size:22px;flex-direction:column;gap:4px;padding:16px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;width:100%;text-align:center;">
+            <div style="font-size:10px;color:var(--taupe);">╔══════╗<br>┃ 코브 간접등 ┃<br>╚══════╝</div>
+            <div style="font-size:24px;">🌀<br><span style="font-size:9px;color:var(--wood);">실링팬</span></div>
+            <div style="font-size:10px;color:var(--taupe);">╔══════╗<br>┃ 코브 간접등 ┃<br>╚══════╝</div>
+          </div>
+          <div style="font-size:9px;color:var(--taupe);border:1px dashed var(--sand);padding:4px 8px;border-radius:4px;margin-top:4px;">우물천장 (井) — 라운드형</div>
         </div>
+        <div class="mb-item-label">우물천장 + 실링팬 <span class="item-tag">핵심</span></div>
+        <div class="mb-item-desc">중앙 실링팬 + 가장자리 코브 간접조명. 목공+전기 동시 작업. 라운드형 몰딩 추천.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#E8DDCE,#DDD0BC);">
+        <div class="mb-item-visual">📚</div>
+        <div class="mb-item-label">벽면 빌트인 책장</div>
+        <div class="mb-item-desc">원목 프레임 오픈형. 목공 틀 시공 후 선반 배치.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#F0E8DC,#E4D9C8);">
+        <div class="mb-item-visual">🪑</div>
+        <div class="mb-item-label">리딩 체어 + 스탠드</div>
+        <div class="mb-item-desc">패브릭/가죽 1인 체어. 옆에 플로어 스탠드 조명.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#DDD0BC,#C9B99A);">
+        <div class="mb-item-visual">🖥️</div>
+        <div class="mb-item-label">원목 데스크</div>
+        <div class="mb-item-desc">오크/월넛 원목. 서재 영역의 중심 가구.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#E4D9C8,#DDD0BC);">
+        <div class="mb-item-visual">💡</div>
+        <div class="mb-item-label">레일 조명 <span class="item-tag">핵심</span></div>
+        <div class="mb-item-desc">서재 영역 포커스. 매립등 최소화, 레일로 방향성 연출.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#EDE5D8,#DDD0BC);">
+        <div class="mb-item-visual">🪟</div>
+        <div class="mb-item-label">린넨 커튼</div>
+        <div class="mb-item-desc">베이지~크림 린넨. 자연광 확산 + 따뜻한 톤.</div>
+      </div>
+      <div class="mb-note">💡 <strong>조명 구성:</strong> 우물천장 코브등(간접) + 실링팬(중앙) + 레일조명(서재 포커스) + 매립등 최소(동선용). 모든 조명 <strong>3000K 전구색</strong> 통일. 직접등 없음.</div>
+    </div>
+  </div>
+
+  <!-- === 2. 주방 === -->
+  <div class="mb-canvas" data-space="Kitchen">
+    <div class="mb-header">
+      <div>
+        <div class="mb-title">주방 — 내추럴 클린 + 아일랜드</div>
+        <div class="mb-subtitle">약 3평 · 싱크대 교체 + 아일랜드 도입 · 현관→주방→다용도실 동선</div>
+      </div>
+      <div class="mb-colors">
+        <div class="mb-color" style="background:#FAF5EE;" data-name="아이보리 상부장"></div>
+        <div class="mb-color" style="background:#EDE5D8;" data-name="베이지 하부장"></div>
+        <div class="mb-color" style="background:#C9B99A;" data-name="우드 상판"></div>
+        <div class="mb-color" style="background:#BFA57A;" data-name="골드 손잡이"></div>
       </div>
     </div>
-    <div class="mood-card">
-      <div class="mood-img" style="background:linear-gradient(145deg,#EBE2D4 0%,#DFD3C0 40%,#D5C7B2 100%);">🛏️</div>
-      <div class="mood-card-body">
-        <h4>침실 — 따뜻한 쉼터</h4>
-        <p>샌드~베이지 도배로 포근한 분위기. 린넨 침구와 내추럴 커튼. 원목 침대 프레임 + 사이드 테이블. 간접조명(시사시)으로 아늑함 극대화. 3000K 전구색 통일.</p>
-        <div class="mood-keywords">
-          <span class="tag">린넨 침구</span><span class="tag">원목 프레임</span>
-          <span class="tag">간접조명</span><span class="tag">내추럴 커튼</span>
-        </div>
+    <div class="mb-body layout-kitchen">
+      <div class="mb-item" style="background:linear-gradient(145deg,#EDE5D8,#DDD0BC);">
+        <div class="mb-item-visual">🍽️</div>
+        <div class="mb-item-label">싱크대 (필름+상판교체) <span class="item-tag">핵심</span></div>
+        <div class="mb-item-desc">아이보리 필름 + 인조대리석 or 우드톤 상판. 매트 골드 손잡이.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#F0E8DC,#E4D9C8);">
+        <div class="mb-item-visual">🏝️</div>
+        <div class="mb-item-label">아일랜드 식탁 <span class="item-tag">핵심</span></div>
+        <div class="mb-item-desc">식탁 겸용 + 수납 + 매립 콘센트. 세라믹 or 우드 상판. 22평 공간효율 극대화.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#DDD0BC,#C9B99A);">
+        <div class="mb-item-visual">☕</div>
+        <div class="mb-item-label">커피 코너</div>
+        <div class="mb-item-desc">아일랜드 위 매립 콘센트로 커피머신 배치. 카페 무드.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#E8DDCE,#DDD0BC);">
+        <div class="mb-item-visual">🧱</div>
+        <div class="mb-item-label">벽 타일 (백스플래시)</div>
+        <div class="mb-item-desc">서브웨이 or 포세린. 아이보리~베이지 톤. 가스레인지 뒤~상부장 하단.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#EDE5D8,#DDD0BC);">
+        <div class="mb-item-visual">💡</div>
+        <div class="mb-item-label">매립등 (다운라이트)</div>
+        <div class="mb-item-desc">주방 천장 매립등. 3000K. 아일랜드 위 펜던트 조명도 고려.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#F0E8DC,#E4D9C8);">
+        <div class="mb-item-visual">🧹</div>
+        <div class="mb-item-label">수납 연결 (청소기장)</div>
+        <div class="mb-item-desc">신발장~청소기 수납장 일체 설계. 현관 동선에서 자연스럽게 연결.</div>
+      </div>
+      <div class="mb-note">📌 <strong>레퍼런스:</strong> 오늘의집 뿌니그니 21평 사례 — 동일 구조(현관→주방→다용도실). 아일랜드 매립콘센트 + 필름 싱크대 + 체크 커튼 포인트.</div>
+    </div>
+  </div>
+
+  <!-- === 3. 안방 === -->
+  <div class="mb-canvas" data-space="Bedroom">
+    <div class="mb-header">
+      <div>
+        <div class="mb-title">안방 — 따뜻한 쉼터</div>
+        <div class="mb-subtitle">약 4평 · 린넨 침구 · 간접조명(시사시) · 3000K 전구색</div>
+      </div>
+      <div class="mb-colors">
+        <div class="mb-color" style="background:#EDE5D8;" data-name="아이보리 도배"></div>
+        <div class="mb-color" style="background:#DDD0BC;" data-name="베이지 침구"></div>
+        <div class="mb-color" style="background:#C9B99A;" data-name="린넨 커튼"></div>
+        <div class="mb-color" style="background:#8B7355;" data-name="원목 프레임"></div>
       </div>
     </div>
-    <div class="mood-card">
-      <div class="mood-img" style="background:linear-gradient(145deg,#F5EDE2 0%,#E8DFD1 40%,#DDD3C3 100%);">🚿</div>
-      <div class="mood-card-body">
-        <h4>욕실 — 웜 클린</h4>
-        <p>아이보리~베이지 타일. 매트 골드 수전 통일. 원목 세면대장. 간접조명 거울(LED미러). 방수 철저하게 — 하자 시 아래층 피해.</p>
-        <div class="mood-keywords">
-          <span class="tag">베이지 타일</span><span class="tag">골드 수전</span>
-          <span class="tag">원목 세면대</span><span class="tag">LED 미러</span>
+    <div class="mb-body layout-bedroom">
+      <div class="mb-item mb-span-2" style="background:linear-gradient(145deg,#EDE5D8,#DDD0BC);">
+        <div class="mb-item-visual" style="font-size:16px;padding:14px;">
+          <div style="text-align:center;">
+            <div style="font-size:9px;color:var(--taupe);letter-spacing:1px;">╌╌╌ 시사시 간접조명 (천장) ╌╌╌</div>
+            <div style="font-size:28px;margin:6px 0;">🛏️</div>
+            <div style="font-size:9px;color:var(--taupe);">원목 침대 프레임 + 린넨 침구</div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:9px;color:var(--text-light);">
+              <span>🔲 사이드 테이블</span>
+              <span>🔲 사이드 테이블</span>
+            </div>
+          </div>
         </div>
+        <div class="mb-item-label">침실 레이아웃</div>
+        <div class="mb-item-desc">벽면 시사시(간접등) → 은은한 분위기. 양 사이드 테이블 + 무드등.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#DDD0BC,#C9B99A);">
+        <div class="mb-item-visual">🪵</div>
+        <div class="mb-item-label">원목 침대 프레임</div>
+        <div class="mb-item-desc">오크 or 라탄. 낮은 높이 추천.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#F0E8DC,#E4D9C8);">
+        <div class="mb-item-visual">🌙</div>
+        <div class="mb-item-label">무드등 / 스탠드</div>
+        <div class="mb-item-desc">버섯형 무드등 or 미니 테이블 스탠드. 3000K.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#EDE5D8,#DDD0BC);">
+        <div class="mb-item-visual">🪟</div>
+        <div class="mb-item-label">내추럴 커튼 (암막+쉬어)</div>
+        <div class="mb-item-desc">베이지 암막 + 크림 린넨 쉬어 이중 커튼.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#E4D9C8,#DDD0BC);">
+        <div class="mb-item-visual">👕</div>
+        <div class="mb-item-label">붙박이장 (도어)</div>
+        <div class="mb-item-desc">슬라이딩 or 스윙도어. 화이트~아이보리.</div>
+      </div>
+      <div class="mb-note">🌙 <strong>포인트:</strong> 안방은 "쉼"이 핵심. 조명은 간접등(시사시)만으로 충분. 직접등 불필요. 린넨+우드로 따뜻한 톤 통일.</div>
+    </div>
+  </div>
+
+  <!-- === 4. 욕실 === -->
+  <div class="mb-canvas" data-space="Bath">
+    <div class="mb-header">
+      <div>
+        <div class="mb-title">욕실 — 웜 클린</div>
+        <div class="mb-subtitle">약 1.5평 · 전체 철거 후 재시공 · 방수 → 타일 → 설비</div>
+      </div>
+      <div class="mb-colors">
+        <div class="mb-color" style="background:#EDE5D8;" data-name="아이보리 벽타일"></div>
+        <div class="mb-color" style="background:#DDD0BC;" data-name="베이지 바닥타일"></div>
+        <div class="mb-color" style="background:#BFA57A;" data-name="매트 골드 수전"></div>
+        <div class="mb-color" style="background:#8B7355;" data-name="원목 세면대"></div>
+      </div>
+    </div>
+    <div class="mb-body layout-bath">
+      <div class="mb-item" style="background:linear-gradient(145deg,#EDE5D8,#DDD0BC);">
+        <div class="mb-item-visual">🧱</div>
+        <div class="mb-item-label">아이보리 벽 타일 <span class="item-tag">풀타일</span></div>
+        <div class="mb-item-desc">300×600 포세린. 천장까지 풀타일. 줄눈 화이트.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#DDD0BC,#C9B99A);">
+        <div class="mb-item-visual">🪞</div>
+        <div class="mb-item-label">LED 미러 (간접조명)</div>
+        <div class="mb-item-desc">라운드형 LED 미러. 간접조명 내장. 3000K 전구색.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#C9B99A,#B5A282);">
+        <div class="mb-item-visual">🚿</div>
+        <div class="mb-item-label">매트 골드 수전 <span class="item-tag">통일</span></div>
+        <div class="mb-item-desc">세면대+샤워+욕조 수전 전체 매트 골드/브론즈 통일.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#E8DDCE,#DDD0BC);">
+        <div class="mb-item-visual">🪵</div>
+        <div class="mb-item-label">원목 세면대장</div>
+        <div class="mb-item-desc">하부 수납 포함. 방습 처리 필수. 오크톤.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#DDD0BC,#C9B99A);">
+        <div class="mb-item-visual">🧱</div>
+        <div class="mb-item-label">논슬립 바닥 타일</div>
+        <div class="mb-item-desc">베이지 톤 논슬립. 배수 구배 1/50~1/100 확보.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#F0E8DC,#E4D9C8);">
+        <div class="mb-item-visual">🌬️</div>
+        <div class="mb-item-label">환기팬 + 방수</div>
+        <div class="mb-item-desc">환기팬 교체. 방수 48시간 양생 필수. 하자 시 아래층 피해.</div>
+      </div>
+      <div class="mb-note">⚠️ <strong>방수가 최우선:</strong> 방수 시공 후 48시간 양생 → 물막이 테스트 → 타일 시공 순서 반드시 준수.</div>
+    </div>
+  </div>
+
+  <!-- === 5. 현관 + 다용도실 === -->
+  <div class="mb-canvas" data-space="Entry">
+    <div class="mb-header">
+      <div>
+        <div class="mb-title">현관 + 다용도실</div>
+        <div class="mb-subtitle">약 1.5평 · 현관 타일 교체 · 신발장 리폼 · 센서등</div>
+      </div>
+      <div class="mb-colors">
+        <div class="mb-color" style="background:#EDE5D8;" data-name="아이보리 벽"></div>
+        <div class="mb-color" style="background:#C9B99A;" data-name="베이지 타일"></div>
+        <div class="mb-color" style="background:#8B7355;" data-name="우드 신발장"></div>
+        <div class="mb-color" style="background:#BFA57A;" data-name="골드 센서등"></div>
+      </div>
+    </div>
+    <div class="mb-body layout-entry">
+      <div class="mb-item" style="background:linear-gradient(145deg,#DDD0BC,#C9B99A);">
+        <div class="mb-item-visual">🧱</div>
+        <div class="mb-item-label">현관 타일</div>
+        <div class="mb-item-desc">베이지~모카 포인트 패턴. 논슬립. 헤링본 or 정방형.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#E8DDCE,#DDD0BC);">
+        <div class="mb-item-visual">👟</div>
+        <div class="mb-item-label">신발장 (리폼 or 교체)</div>
+        <div class="mb-item-desc">필름 리폼 or 교체. 하단 간접조명으로 고급감 연출.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#EDE5D8,#DDD0BC);">
+        <div class="mb-item-visual">💡</div>
+        <div class="mb-item-label">현관 센서등</div>
+        <div class="mb-item-desc">골드 케이지 or 미니멀 센서등. 자동 점등.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#F0E8DC,#E4D9C8);">
+        <div class="mb-item-visual">🚪</div>
+        <div class="mb-item-label">중문 (슬라이딩)</div>
+        <div class="mb-item-desc">화이트 슬림 중문 or 모루유리 중문. 냉난방 효율 + 시선 차단.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#DDD0BC,#C9B99A);">
+        <div class="mb-item-visual">🧺</div>
+        <div class="mb-item-label">다용도실 수납</div>
+        <div class="mb-item-desc">세탁기 위 건조기. 선반형 수납. 급배수 위치 확인.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#EDE5D8,#DDD0BC);">
+        <div class="mb-item-visual">🪞</div>
+        <div class="mb-item-label">전신 거울</div>
+        <div class="mb-item-desc">골드 프레임 전신 거울. 현관 공간감 확장.</div>
+      </div>
+      <div class="mb-note">🏠 <strong>동선:</strong> 현관 → 주방 → 다용도실이 일직선. 수납을 동선에 맞춰 배치하면 22평에서도 넉넉한 느낌.</div>
+    </div>
+  </div>
+
+  <!-- === 작은방 === -->
+  <div class="mb-canvas" data-space="Room2">
+    <div class="mb-header">
+      <div>
+        <div class="mb-title">작은방 — 멀티 룸</div>
+        <div class="mb-subtitle">약 3평 · 서재/작업실 or 드레스룸 · 붙박이장</div>
+      </div>
+      <div class="mb-colors">
+        <div class="mb-color" style="background:#FAF5EE;" data-name="화이트 벽"></div>
+        <div class="mb-color" style="background:#EDE5D8;" data-name="아이보리"></div>
+        <div class="mb-color" style="background:#8B7355;" data-name="오크"></div>
+      </div>
+    </div>
+    <div class="mb-body" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="mb-item" style="background:linear-gradient(145deg,#EDE5D8,#DDD0BC);">
+        <div class="mb-item-visual">👕</div>
+        <div class="mb-item-label">붙박이장 (슬라이딩)</div>
+        <div class="mb-item-desc">목공 틀 + 도어. 화이트~아이보리. 전면 활용.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#F0E8DC,#E4D9C8);">
+        <div class="mb-item-visual">🖥️</div>
+        <div class="mb-item-label">데스크 (선택)</div>
+        <div class="mb-item-desc">작업실로 활용 시. 창가 배치 + 콘센트 충분히.</div>
+      </div>
+      <div class="mb-item" style="background:linear-gradient(145deg,#DDD0BC,#C9B99A);">
+        <div class="mb-item-visual">💡</div>
+        <div class="mb-item-label">간접 조명</div>
+        <div class="mb-item-desc">매립등 2~3개 or 레일조명. 3000K.</div>
       </div>
     </div>
   </div>
 
-  <div class="card" style="margin-top:20px;">
-    <h4>🏠 핵심 디자인 포인트</h4>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:10px;">
-      <div style="font-size:12px;color:var(--text-mid);line-height:1.7;">
-        <strong style="color:var(--wood);">우물천장 + 실링팬</strong><br>
-        우물 정(井)자 모양 천장. 간접조명을 설치하고 중앙에 실링팬 배치. 라운드형 우물천장이 트렌드. 목공+전기 작업 필요.
-      </div>
-      <div style="font-size:12px;color:var(--text-mid);line-height:1.7;">
-        <strong style="color:var(--wood);">간접조명 중심 설계</strong><br>
-        직접등(직부등) 최소화. 코브등(시사시 간접등), 레일조명, 매립등(다운라이트) 조합. 모든 조명 3000K 전구색 통일.
-      </div>
-      <div style="font-size:12px;color:var(--text-mid);line-height:1.7;">
-        <strong style="color:var(--wood);">서재형 거실 구성</strong><br>
-        TV 대신 벽면 책장 + 데스크. 리딩체어 + 스탠드조명. 낮은 가구 배치로 22평 공간감 극대화.
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h4>📋 무드보드 만들기 TIP (오늘의집 민트B 참고)</h4>
-    <ul>
-      <li>무드보드 = 원하는 이미지를 한 데 모아보는 캔버스. 공간별(현관/거실/안방) 따로 만들면 업체 소통에 큰 도움</li>
-      <li>컬러 컨셉, 기존가구와 새 가구, 소품, 조명을 한 화면에 배치</li>
-      <li>바꾸지 않을 부분(기존가구, 바닥)과의 색상 매치도 고려</li>
-      <li>오늘의집, 핀터레스트, 네이버 리빙 등에서 사진 수집 → 한 화면에 정리</li>
-    </ul>
-  </div>
 </div>
 
 <!-- ==================== 2. GUIDE ==================== -->
